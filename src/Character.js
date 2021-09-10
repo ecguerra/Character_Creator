@@ -6,12 +6,10 @@ const Character = () => {
     const noseArr = ['nose1', 'nose2', 'nose3', 'nose4', 'nose5']
     const feetArr = ['feet1', 'feet2', 'feet3', 'feet4', 'feet5']
 
-    // there's a better way to do this
     const [hairInd, setHairInd] = useState(0)
-    // let hairInd = 0
-    let eyeInd = 0
-    let noseInd = 0
-    let feetInd = 0
+    const [eyeInd, setEyeInd] = useState(0)
+    const [noseInd, setNoseInd] = useState(0)
+    const [feetInd, setFeetInd] = useState(0)
 
     const [hair, setHair] = useState(hairArr[hairInd])
     const [eyes, setEyes] = useState(eyeArr[eyeInd])
@@ -27,7 +25,19 @@ const Character = () => {
 
     useEffect(()=>{
         setHair(hairArr[hairInd])
-    },[hair, hairInd])
+    },[hairInd])
+
+    useEffect(()=>{
+        setEyes(eyeArr[eyeInd])
+    },[eyeInd])
+
+    useEffect(()=>{
+        setNose(noseArr[noseInd])
+    },[noseInd])
+
+    useEffect(()=>{
+        setFeet(feetArr[feetInd])
+    },[feetInd])
 
     return(
         <div id='characterBody'>
@@ -41,13 +51,31 @@ const Character = () => {
                 }}>&gt;</button>
             </div>
             <div id='characterEyes'>
+                <button onClick={()=> {
+                    if(eyeInd > 0 ) setEyeInd(prevInd => prevInd - 1)
+                }}>&lt;</button>
                 {characterBody.eyes}
+            <button onClick={()=> {
+                    if(eyeInd < eyeArr.length -1 ) setEyeInd(prevInd => prevInd + 1)
+                }}>&gt;</button>
             </div>
             <div id='characterNose'>
+                <button onClick={()=> {
+                    if(noseInd > 0 ) setNoseInd(prevInd => prevInd - 1)
+                }}>&lt;</button>
                 {characterBody.nose}
+                <button onClick={()=> {
+                    if(noseInd < noseArr.length -1 ) setNoseInd(prevInd => prevInd + 1)
+                }}>&gt;</button>
             </div>
             <div id='characterFeet'>
+                <button onClick={()=> {
+                    if(feetInd > 0 ) setFeetInd(prevInd => prevInd - 1)
+                }}>&lt;</button>
                 {characterBody.feet}
+                <button onClick={()=> {
+                    if(feetInd < feetArr.length -1 ) setFeetInd(prevInd => prevInd + 1)
+                }}>&gt;</button>
             </div>
         </div>
     )
