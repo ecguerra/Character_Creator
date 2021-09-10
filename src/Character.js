@@ -16,6 +16,8 @@ const Character = () => {
     const [nose, setNose] = useState(noseArr[noseInd])
     const [feet, setFeet] = useState(feetArr[feetInd])
 
+    const [savedChars, setSavedChars] = useState([])
+
     const characterBody = {
         hair,
         eyes,
@@ -40,42 +42,56 @@ const Character = () => {
     },[feetInd])
 
     return(
-        <div id='characterBody'>
-            <div id='characterHair' key='charHair' style={{backgroundColor: characterBody.hair}}>
+        <div>
+            <div id='characterBody'>
+                <div id='characterHair' key='charHair' style={{backgroundColor: characterBody.hair}}>
+                    <button onClick={()=> {
+                        if(hairInd > 0 ) setHairInd(prevInd => prevInd - 1)
+                    }}>&lt;</button>
+                    {characterBody.hair}
+                    <button onClick={()=> {
+                        if(hairInd < hairArr.length -1 ) setHairInd(prevInd => prevInd + 1)
+                    }}>&gt;</button>
+                </div>
+                <div id='characterEyes'>
+                    <button onClick={()=> {
+                        if(eyeInd > 0 ) setEyeInd(prevInd => prevInd - 1)
+                    }}>&lt;</button>
+                    {characterBody.eyes}
                 <button onClick={()=> {
-                    if(hairInd > 0 ) setHairInd(prevInd => prevInd - 1)
-                }}>&lt;</button>
-                {characterBody.hair}
-                <button onClick={()=> {
-                    if(hairInd < hairArr.length -1 ) setHairInd(prevInd => prevInd + 1)
-                }}>&gt;</button>
+                        if(eyeInd < eyeArr.length -1 ) setEyeInd(prevInd => prevInd + 1)
+                    }}>&gt;</button>
+                </div>
+                <div id='characterNose'>
+                    <button onClick={()=> {
+                        if(noseInd > 0 ) setNoseInd(prevInd => prevInd - 1)
+                    }}>&lt;</button>
+                    {characterBody.nose}
+                    <button onClick={()=> {
+                        if(noseInd < noseArr.length -1 ) setNoseInd(prevInd => prevInd + 1)
+                    }}>&gt;</button>
+                </div>
+                <div id='characterFeet'>
+                    <button onClick={()=> {
+                        if(feetInd > 0 ) setFeetInd(prevInd => prevInd - 1)
+                    }}>&lt;</button>
+                    {characterBody.feet}
+                    <button onClick={()=> {
+                        if(feetInd < feetArr.length -1 ) setFeetInd(prevInd => prevInd + 1)
+                    }}>&gt;</button>
+                </div>
             </div>
-            <div id='characterEyes'>
-                <button onClick={()=> {
-                    if(eyeInd > 0 ) setEyeInd(prevInd => prevInd - 1)
-                }}>&lt;</button>
-                {characterBody.eyes}
-            <button onClick={()=> {
-                    if(eyeInd < eyeArr.length -1 ) setEyeInd(prevInd => prevInd + 1)
-                }}>&gt;</button>
-            </div>
-            <div id='characterNose'>
-                <button onClick={()=> {
-                    if(noseInd > 0 ) setNoseInd(prevInd => prevInd - 1)
-                }}>&lt;</button>
-                {characterBody.nose}
-                <button onClick={()=> {
-                    if(noseInd < noseArr.length -1 ) setNoseInd(prevInd => prevInd + 1)
-                }}>&gt;</button>
-            </div>
-            <div id='characterFeet'>
-                <button onClick={()=> {
-                    if(feetInd > 0 ) setFeetInd(prevInd => prevInd - 1)
-                }}>&lt;</button>
-                {characterBody.feet}
-                <button onClick={()=> {
-                    if(feetInd < feetArr.length -1 ) setFeetInd(prevInd => prevInd + 1)
-                }}>&gt;</button>
+            <button onClick={()=>{
+                setSavedChars([...savedChars, {hair, eyes, nose, feet}])}}>Save Character</button>
+            <div>
+                {savedChars.length > 0 && savedChars.map((char, index) => (
+                    <div key={index}>
+                        {char.hair}{' '}
+                        {char.eyes}{' '}
+                        {char.nose}{' '}
+                        {char.feet}{' '}
+                    </div>
+                ))}
             </div>
         </div>
     )
