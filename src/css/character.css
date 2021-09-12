@@ -1,0 +1,47 @@
+#characterBody {
+    width: 600px;
+    height: 800px;
+    background-image: url('../img/body.png');
+    z-index: 1;
+}
+
+#characterHair {
+    width: 600px;
+    height: 200px;
+    z-index: 2;
+}
+
+#characterEyes {
+    width: 600px;
+    height: 200px;
+    z-index: 2;
+}
+
+#characterNose {
+    width: 600px;
+    height: 250px;
+    z-index: 3;
+}
+
+#characterFeet {
+    width: 600px;
+    height: 200px;
+    z-index: -1;
+}
+
+
+.hair1 {
+    background-image: url('../img/hair1.png');
+}
+
+.eye1 {
+    background-image: url('../img/eye1.png');
+}
+
+.nose1 {
+    background-image: url('../img/nose1.png');
+}
+
+.feet1 {
+    background-image: url('../img/feet1.png');
+}

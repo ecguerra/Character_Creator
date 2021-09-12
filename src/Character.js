@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import './css/character.css'
 
 const Character = () => {
-    const hairArr = ['green', 'red', 'blue', 'purple', 'pink']
+    const hairArr = ['hair1', 'hair2', 'hair3', 'hair4', 'hair5']
     const eyeArr = ['eye1', 'eye2', 'eye3', 'eye4', 'eye5']
     const noseArr = ['nose1', 'nose2', 'nose3', 'nose4', 'nose5']
     const feetArr = ['feet1', 'feet2', 'feet3', 'feet4', 'feet5']
@@ -44,7 +45,7 @@ const Character = () => {
     return(
         <div>
             <div id='characterBody'>
-                <div id='characterHair' key='charHair' style={{backgroundColor: characterBody.hair}}>
+                <div id='characterHair' key='charHair' className={characterBody.hair}>
                     <button onClick={()=> {
                         if(hairInd > 0 ) setHairInd(prevInd => prevInd - 1)
                     }}>&lt;</button>
@@ -53,7 +54,7 @@ const Character = () => {
                         if(hairInd < hairArr.length -1 ) setHairInd(prevInd => prevInd + 1)
                     }}>&gt;</button>
                 </div>
-                <div id='characterEyes'>
+                <div id='characterEyes' className={characterBody.eyes}>
                     <button onClick={()=> {
                         if(eyeInd > 0 ) setEyeInd(prevInd => prevInd - 1)
                     }}>&lt;</button>
@@ -62,7 +63,7 @@ const Character = () => {
                         if(eyeInd < eyeArr.length -1 ) setEyeInd(prevInd => prevInd + 1)
                     }}>&gt;</button>
                 </div>
-                <div id='characterNose'>
+                <div id='characterNose' className={characterBody.nose}>
                     <button onClick={()=> {
                         if(noseInd > 0 ) setNoseInd(prevInd => prevInd - 1)
                     }}>&lt;</button>
@@ -71,7 +72,7 @@ const Character = () => {
                         if(noseInd < noseArr.length -1 ) setNoseInd(prevInd => prevInd + 1)
                     }}>&gt;</button>
                 </div>
-                <div id='characterFeet'>
+                <div id='characterFeet' className={characterBody.feet}>
                     <button onClick={()=> {
                         if(feetInd > 0 ) setFeetInd(prevInd => prevInd - 1)
                     }}>&lt;</button>
