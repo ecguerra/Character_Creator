@@ -17,13 +17,17 @@ const Character = () => {
     const [nose, setNose] = useState(noseArr[noseInd])
     const [feet, setFeet] = useState(feetArr[feetInd])
 
+    const [id, setId] = useState(`${hairInd}${eyeInd}${noseInd}${feetInd}-1`)
+
+    const [canSave, setCanSave] = useState(true)
     const [savedChars, setSavedChars] = useState([])
 
     const characterBody = {
+        id,
         hair,
         eyes,
         nose,
-        feet
+        feet,
     }
 
     useEffect(()=>{
@@ -41,6 +45,23 @@ const Character = () => {
     useEffect(()=>{
         setFeet(feetArr[feetInd])
     },[feetInd])
+
+    useEffect(()=>{
+        const charDetails = Object.values(characterBody)
+        savedChars.forEach(char => {
+            const savedDetails = Object.values(char)
+            if(!savedDetails.includes(charDetails[0])) {
+                setCanSave(true)
+                setId(`${hairInd}${eyeInd}${noseInd}${feetInd}-1`)
+            } else if(!savedDetails.includes(`${hairInd}${eyeInd}${noseInd}${feetInd}-2`)) {
+                setCanSave(true)
+                setId(`${hairInd}${eyeInd}${noseInd}${feetInd}-2`)
+            } else {
+                setCanSave(false)
+            }
+        })
+
+    },[hairInd,eyeInd,noseInd,feetInd,savedChars])
 
     return(
         <div>
@@ -82,15 +103,21 @@ const Character = () => {
                     }}>&gt;</button>
                 </div>
             </div>
-            <button onClick={()=>{
-                setSavedChars([...savedChars, {hair, eyes, nose, feet}])}}>Save Character</button>
+            {canSave ? (
+                <button onClick={()=>{
+                    setSavedChars([...savedChars, {id, hair, eyes, nose, feet}])}}>Save Character
+                </button>
+            ) : (
+                <h4>You already have 2 of this Bean!</h4>
+            )}
             <div>
                 {savedChars.length > 0 && savedChars.map((char, index) => (
-                    <div key={index}>
+                    <div key={char.id}>
                         {char.hair}{' '}
                         {char.eyes}{' '}
                         {char.nose}{' '}
                         {char.feet}{' '}
+                        {char.id}
                     </div>
                 ))}
             </div>
