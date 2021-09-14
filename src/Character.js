@@ -65,7 +65,7 @@ const Character = () => {
 
     return(
         <div>
-            <div id='characterBody'>
+            <div className='characterBody'>
                 <div id='characterHair' key='charHair' className={characterBody.hair}>
                     <button onClick={()=> {
                         if(hairInd > 0 ) setHairInd(prevInd => prevInd - 1)
@@ -110,13 +110,19 @@ const Character = () => {
             ) : (
                 <h4>You already have 2 of this Bean!</h4>
             )}
-            <div>
+            <div className='savedChars'>
                 {savedChars.length > 0 && savedChars.map((char, index) => (
-                    <div key={char.id}>
-                        {char.hair}{' '}
-                        {char.eyes}{' '}
-                        {char.nose}{' '}
-                        {char.feet}{' '}
+                    <div key={char.id} className='characterBody bodyThumb'>
+                        <div className={char.hair}></div>
+                        <div className={char.eyes}>
+                            {/* {char.eyes} */}
+                        </div>
+                        <div className={char.nose}>
+                            {/* {char.nose} */}
+                        </div>
+                        <div className={char.feet}>
+                            {/* {char.feet} */}
+                        </div>
                         {char.id}
                     </div>
                 ))}
